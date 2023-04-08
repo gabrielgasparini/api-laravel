@@ -18,6 +18,7 @@ class MasterApiController extends BaseController
     // GET ALL
     public function index(){
         if(!$data = $this->model->all()){
+        /* if(!$data = $this->model->paginate(2)){ */ // PAGINAÇÃO
             return response()->json(['error' => 'Nada foi encontrado'], 404);
         } else {
             return response()->json($data);

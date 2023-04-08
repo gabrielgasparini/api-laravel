@@ -14,11 +14,20 @@ class ClienteApiController extends MasterApiController
     protected $upload = 'image';
     protected $width = 177;
     protected $height = 236;
+    protected $totalPage = 3;
 
     public $request;
     public function __construct(Cliente $clientes, Request $request){
         $this->model   = $clientes;
         $this->request = $request;
+    }
+
+    public function index(){
+        if(!$data = $this->model->paginate($this->totalPage)){ // PAGINAÇÃO
+            return response()->json(['error' => 'Nada foi encontrado'], 404);
+        } else {
+            return response()->json($data);
+        }
     }
 
     // Relacionamento 1 para 1
