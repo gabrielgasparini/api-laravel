@@ -17,7 +17,6 @@ class CreateClientesTable extends Migration
             $table->id();
             $table->string('name', 150)->nullable();
             $table->string('image', 150)->nullable()->comment('Foto do cliente');
-            $table->string('cpf_cnpj', 19)->nullable()->unique();
             $table->timestamps();
         });
     }

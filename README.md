@@ -67,6 +67,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 - Configurações ficam no arquivo .env na raiz do projeto
 - Gerenciamento de rotas em routes/api.php
+- php artisan serve (roda o projeto e force um ip para acesso)
 - php artisan make:model Models\Cliente -m (Cria um model na pasta Models com a migration (-m))
 - php artisan migrate (Roda as migrations)
 - php artisan migrate:refresh (Roda as migrations, excluindo as tabelas e gerador novas)

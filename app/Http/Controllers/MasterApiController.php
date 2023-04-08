@@ -27,13 +27,15 @@ class MasterApiController extends BaseController
     // INSERT
     public function store(Request $request)
     {
+        $width = $this->width;
+        $height = $this->height;
         $request->validate($this->model->rules());
         $dataForm = $request->all();
         if($request->hasFile($this->upload) && $request->file($this->upload)->isValid()){
             $extension = $request->file($this->upload)->extension();
             $name = uniqid(date('His'));
             $nameFile = "{$name}.{$extension}";
-            $upload = ImageUp::make($dataForm[$this->upload])->resize(177, 236)->save(storage_path("app/public/{$this->path}/{$nameFile}", 70));
+            $upload = ImageUp::make($dataForm[$this->upload])->resize($width, $height)->save(storage_path("app/public/{$this->path}/{$nameFile}", 70));
             if(!$upload){
                 return response()->json(['error' => 'Falha ao fazer upload'], 500);
             }else{
@@ -55,6 +57,8 @@ class MasterApiController extends BaseController
 
     // UPDATE
     public function update(Request $request, $id) {
+        $width = $this->width;
+        $height = $this->height;
         if(!$data = $this->model->find($id)){
             return response()->json(['error' => 'Nada foi encontrado'], 404);
         }
@@ -68,7 +72,7 @@ class MasterApiController extends BaseController
             $extension = $request->file($this->upload)->extension();
             $name = uniqid(date('His'));
             $nameFile = "{$name}.{$extension}";
-            $upload = ImageUp::make($dataForm[$this->upload])->resize(177, 236)->save(storage_path("app/public/{$this->path}/{$nameFile}", 70));
+            $upload = ImageUp::make($dataForm[$this->upload])->resize($width, $height)->save(storage_path("app/public/{$this->path}/{$nameFile}", 70));
             if(!$upload){
                 return response()->json(['error' => 'Falha ao fazer upload'], 500);
             }else{

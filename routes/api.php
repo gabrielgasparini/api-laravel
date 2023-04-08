@@ -20,4 +20,19 @@ use Illuminate\Support\Facades\Route;
 
 //Route::get('clientes', 'App\Http\Controllers\Api\ClienteApiController@index');
 
+// Rota de clientes
+Route::get('clientes/{id}/documento', 'App\Http\Controllers\Api\ClienteApiController@documento');
+Route::get('clientes/{id}/filmesalugados', 'App\Http\Controllers\Api\ClienteApiController@alugados');
+Route::get('clientes/{id}/telefone', 'App\Http\Controllers\Api\ClienteApiController@telefone');
 Route::resource('clientes', 'App\Http\Controllers\Api\ClienteApiController');
+
+// Rota de documentos de clientes
+Route::get('documento/{id}/cliente', 'App\Http\Controllers\Api\DocumentoApiController@cliente');
+Route::resource('documento', 'App\Http\Controllers\Api\DocumentoApiController');
+
+// Rota de telefones de clientes
+Route::get('telefone/{id}/cliente', 'App\Http\Controllers\Api\TelefoneApiController@cliente');
+Route::resource('telefone', 'App\Http\Controllers\Api\TelefoneApiController');
+
+// Rota de filmes
+Route::resource('filme', 'App\Http\Controllers\Api\FilmeApiController');
